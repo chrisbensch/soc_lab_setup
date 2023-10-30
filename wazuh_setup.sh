@@ -13,12 +13,13 @@ welcome_message() {
 }
 
 # Function to check for interrupted dpkg process
-check_interrupted_dpkg() {
-  if [ -f /var/lib/dpkg/lock ]; then
-    echo -e "${RED}Error: dpkg process is interrupted. Running 'dpkg --configure -a' to correct the problem.${NC}"
-    dpkg --configure -a
-  fi
-}
+# Is this actually necessary?
+#check_interrupted_dpkg() {
+#  if [ -f /var/lib/dpkg/lock ]; then
+#    echo -e "${RED}Error: dpkg process is interrupted. Running 'dpkg --configure -a' to correct #the problem.${NC}"
+#    dpkg --configure -a
+#  fi
+#}
 
 # Function to check for existing Wazuh installations
 check_existing_wazuh() {
