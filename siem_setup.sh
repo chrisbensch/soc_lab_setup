@@ -76,7 +76,7 @@ install_elk_versions() {
   fi
 
   # Install Elasticsearch, Kibana, and Filebeat
-  sudo apt-get install elasticsearch="$elk_version" kibana="$elk_version" filebeat="$elk_version" -y || handle_error "Failed to install Elasticsearch, Kibana, and Filebeat"
+  sudo apt-get install unzip elasticsearch="$elk_version" kibana="$elk_version" filebeat="$elk_version" -y || handle_error "Failed to install Elasticsearch, Kibana, and Filebeat"
 
   log_success "Elasticsearch, Kibana, and Filebeat version $elk_version installed successfully."
 }

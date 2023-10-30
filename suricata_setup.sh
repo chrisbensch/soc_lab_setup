@@ -46,18 +46,18 @@ fi
 # Step 3: Find the active interface
 echo -e "${GREEN}Finding active interface...${NC}"
 
-interface=$(ip route show default | grep -oP 'dev \K\S+' | awk '{print $1}')
-if [ -z "$interface" ]; then
+newinterface=$(ip route show default | grep -oP 'dev \K\S+' | awk '{print $1}')
+if [ -z "$newinterface" ]; then
     echo -e "${RED}Error: Unable to determine the active interface.${NC}"
     exit 1
 fi
 
-echo "Configuration file updated with the active interface: $interface"
+echo "Configuration file updated with the active interface: $newinterface"
 
 # Update the /etc/default/suricata file with the correct IFACE
-echo -e "${GREEN}Updating /etc/default/suricata with IFACE=$interface...${NC}"
-sed -i "s/^IFACE=.*/IFACE=$interface/" /etc/default/suricata
-sed -i "s/\$interface/$interface/g" ./suricata_temp.yaml
+echo -e "${GREEN}Updating /etc/default/suricata with IFACE=$newinterface...${NC}"
+sed -i "s/^IFACE=.*/IFACE=$newinterface/" /etc/default/suricata
+sed -i "s/enp0s3/$newinterface/g" ./suricata_temp.yaml
 
 # Step 4: Update Suricata configuration files
 echo -e "${GREEN}Updating Suricata configuration files...${NC}"
